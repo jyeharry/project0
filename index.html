@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="css/style.css">
-  <script src="js/main.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>TicTacToe</title>
+    <link rel='stylesheet' href="css/style.css">
+    <script src='js/jquery.js'></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+
+      <div id="game-squares">
+        <div class="row">
+          <div id="s0" class="game-square left top"></div>
+          <div id="s1" class="game-square top"></div>
+          <div id="s2" class="game-square right top"></div>
+        </div>
+        <div class="row">
+          <div id="s3" class="game-square left"></div>
+          <div id="s4" class="game-square"></div>
+          <div id="s5" class="game-square right"></div>
+        </div>
+        <div class="row">
+          <div id="s6" class="game-square left bottom"></div>
+          <div id="s7" class="game-square bottom"></div>
+          <div id="s8" class="game-square right bottom"></div>
+        </div>
+      </div>
+
+      <div id="result"></div>
+
+  </body>
 </html>
