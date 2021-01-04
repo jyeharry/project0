@@ -15,7 +15,7 @@ const symbols = ['X', 'O'];
 const takeTurn = function() {
   if ($(this).html() === '') {
     $(this).html(symbols[clickCounter % 2]);
-    if (clickCounter >= 4 && checkResult) {
+    if (clickCounter >= 4 && checkResult()) {
       updateResult();
     }
     clickCounter++;
@@ -25,10 +25,7 @@ const takeTurn = function() {
 const checkResult = function() {
   for (let i = 0; i < 3; i++) {
     if ($($squares[i]).text().length > 0) {
-      const rowWin = checkRow(i * 3);
-      const colWin = checkColumn(i);
-      const diagWin = checkDiagonal(i);
-      return rowWin || colWin || diagWin;
+      return checkRow(i * 3) || checkColumn(i) || checkDiagonal(i);
     }
   }
 }
@@ -46,7 +43,7 @@ const checkColumn = function(i) {
 }
 
 const checkDiagonal = function(i) {
-  // this function only needs to get ran twice as there are only two diagonals, unlike checkRow and checkColumn, so skip the function by returning false when i is equal to 1
+  // this function only needs to get ran twice as there are only two diagonals, unlike checkRow and checkColumn, so we will skip this function by returning false when i is equal to 1
   if (i === 1) {
     return false;
   }
