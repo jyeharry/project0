@@ -17,6 +17,9 @@ const takeTurn = function() {
     $(this).html(symbols[clickCounter % 2]);
     if (clickCounter >= 4 && checkResult()) {
       updateResult();
+      // $($squares).each(function() {
+      //   $(this).off('click');
+      // });
     }
     clickCounter++;
   }
@@ -24,7 +27,7 @@ const takeTurn = function() {
 
 const checkResult = function() {
   for (let i = 0; i < 3; i++) {
-    if ($($squares[i]).text().length > 0) {
+    if ($($squares[i * 4]).text().length > 0) {
       return checkRow(i * 3) || checkColumn(i) || checkDiagonal(i);
     }
   }
