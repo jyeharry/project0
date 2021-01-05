@@ -9,17 +9,42 @@ body {
 }
 
 #game-squares {
-  max-width: 660px;
-  max-height: 660px;
+  max-width: 600px;
+  max-height: 600px;
+  margin: 0 auto;
 }
 
 .row {
   display: flex;
 }
 
-.game-square {
+#result {
+  margin-top: 75px;
+  margin-bottom: 60px;
+  font-size: 30px;
+  transition: 0.2s;
+}
+
+button {
   width: 220px;
-  height: 220px;
+  height: 50px;
+  margin: 0;
+  border: 3px solid #11f;
+  border-radius: 3px;
+  font-size: 20px;
+  background-color: white;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #11f;
+  color: white;
+  cursor: pointer;
+}
+
+.game-square {
+  width: 200px;
+  height: 200px;
   border: 3px solid #11f;
   color: green;
   font-size: 180px;
