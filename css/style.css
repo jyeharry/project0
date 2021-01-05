@@ -8,23 +8,16 @@ body {
   text-align: center;
 }
 
-table {
-  max-width: 600px;
-  max-height: 600px;
-  margin: 0 auto;
-}
-
 #result {
-  margin-top: 75px;
-  margin-bottom: 60px;
+  margin: 60px 0;
   font-size: 30px;
   transition: 0.2s;
 }
 
 button {
-  width: 220px;
+  width: 200px;
   height: 50px;
-  margin: 0;
+  margin-bottom: 20px;
   border: 3px solid #11f;
   border-radius: 3px;
   font-size: 20px;
@@ -38,18 +31,33 @@ button:hover {
   cursor: pointer;
 }
 
+.opacity {
+  opacity: 0;
+}
+
+table {
+  max-width: 525px;
+  max-height: 525px;
+  margin: 0 auto;
+}
+
 tr {
 	display: flex;
 }
 
 td {
-  width: 200px;
-  height: 200px;
+  width: 175px;
+  height: 175px;
   border: 3px solid #11f;
   color: green;
-  font-size: 180px;
+  font-size: 150px;
   text-align: center;
-  line-height: 200px;
+  line-height: 175px;
+  transition: 0.2s;
+}
+
+td:hover {
+  background-color: #eee;
 }
 
 .top {
@@ -66,4 +74,20 @@ td {
 
 .left {
   border-left: none;
+}
+
+.tl-corner {
+  border-top-left-radius: 6px;
+}
+
+.tr-corner {
+  border-top-right-radius: 6px;
+}
+
+.br-corner {
+  border-bottom-right-radius: 6px;
+}
+
+.bl-corner {
+  border-bottom-left-radius: 6px;
 }
