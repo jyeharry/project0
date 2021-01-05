@@ -1,10 +1,12 @@
 let $squares;
+const squares = [];
 
 $(document).ready(function() {
   $squares = $('td');
 
-  $($squares).each(function() {
-    $(this).on('click', takeTurn);
+  $('td').each(function(i) {
+    squares[i] = $(this);
+    squares[i].on('click', takeTurn);
   });
 
   $('#new-game').on('click', newGame);
@@ -20,6 +22,7 @@ const newGame = function() {
   });
   clickCounter = 0;
   gameOver = false;
+  $('#result').text('');
 }
 
 const takeTurn = function() {
