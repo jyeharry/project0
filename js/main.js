@@ -29,6 +29,12 @@ const updateSelect = function() {
   const optionToHide = $(`select option[value=${value}]`);
   $(`#${nextId} option`).show();
   $(optionToHide[nextId]).hide();
+  $squares.each(function() {
+    if ($(this).html() === symbols[id]) {
+        $(this).html(value);
+    }
+  })
+  symbols[id] = value;
 }
 
 const takeTurn = function() {
