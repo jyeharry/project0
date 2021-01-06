@@ -9,6 +9,82 @@
   </head>
   <body>
 
+    <header>
+      <h1>TicTacToe</h1>
+      <hr>
+    </header>
+
+
+    <!-- <select name="token">
+      <option value="X">X</option>
+      <option value="O">O</option>
+      <option value="">&#128526;</option>
+      <option value="">&#128525;</option>
+      <option value="">&#128564;</option>
+      <option value="">&#128565;</option>
+      <option value="">&#128567;</option>
+      <option value="">&#128054;</option>
+      <option value="">&#128568;</option>
+      <option value="">&#128585;</option>
+      <option value="">&#128640;</option>
+      <option value="">&#129297;</option>
+      <option value="">&#129302;</option>
+      <option value="">&#129313;</option>
+      <option value="">&#128169;</option>
+      <option value="">&#127790;</option>
+    </select> -->
+
+    <div id="players">
+      <div id="player1">
+        <h3>
+          Player 1:
+          <select id='0' name="token">
+            <option value="X" selected="selected">X</option>
+            <option value="O" hidden='true'>O</option>
+            <option value="&#128526;">&#128526;</option>
+            <option value="&#128525;">&#128525;</option>
+            <option value="&#128564;">&#128564;</option>
+            <option value="&#128565;">&#128565;</option>
+            <option value="&#128567;">&#128567;</option>
+            <option value="&#128054;">&#128054;</option>
+            <option value="&#128568;">&#128568;</option>
+            <option value="&#128585;">&#128585;</option>
+            <option value="&#128640;">&#128640;</option>
+            <option value="&#129297;">&#129297;</option>
+            <option value="&#129302;">&#129302;</option>
+            <option value="&#129313;">&#129313;</option>
+            <option value="&#128169;">&#128169;</option>
+            <option value="&#127790;">&#127790;</option>
+          </select>
+        </h3>
+        <h3 class='wins'>Wins: <span>0</span></h3>
+      </div>
+        <div id="player2">
+          <h3>
+            Player 2:
+            <select id='1' name="token">
+              <option value="X" hidden='true'>X</option>
+              <option value="O" selected="selected">O</option>
+              <option value="&#128526;">&#128526;</option>
+              <option value="&#128525;">&#128525;</option>
+              <option value="&#128564;">&#128564;</option>
+              <option value="&#128565;">&#128565;</option>
+              <option value="&#128567;">&#128567;</option>
+              <option value="&#128054;">&#128054;</option>
+              <option value="&#128568;">&#128568;</option>
+              <option value="&#128585;">&#128585;</option>
+              <option value="&#128640;">&#128640;</option>
+              <option value="&#129297;">&#129297;</option>
+              <option value="&#129302;">&#129302;</option>
+              <option value="&#129313;">&#129313;</option>
+              <option value="&#128169;">&#128169;</option>
+              <option value="&#127790;">&#127790;</option>
+            </select>
+          </h3>
+          <h3 class='wins'>Wins: <span>0</span></h3>
+        </div>
+    </div>
+
     <table>
       <tr>
         <td class='left top tl-corner'></td>
