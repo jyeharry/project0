@@ -11,6 +11,16 @@ const players = [
     playerNum: 2
   }
 ];
+const winningCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
 let gameOver = false;
 
 $(document).ready(function() {
@@ -19,6 +29,8 @@ $(document).ready(function() {
   $($squares).on('click', takeTurn);
 
   $('#new-game').on('click', newGame);
+
+  $('#reset').on('click', resetScores);
 
   $('select').change(updateSelectMenu);
 });
@@ -29,6 +41,12 @@ const newGame = function() {
   moves = 0;
   gameOver = false;
   $('#result').addClass('opacity');
+}
+
+const resetScores = function() {
+  $('.wins span').text('0');
+  players[0].wins = 0;
+  players[1].wins = 0;
 }
 
 // removes each select menus selected option from the other menu, to avoid players being able to choose the same token
@@ -47,6 +65,7 @@ const updateSelectMenu = function() {
   players[id].token = newToken;
 }
 
+// executed whenever a square is clicked
 const takeTurn = function() {
   if ($(this).text() === '' && !gameOver) {
     const index = moves % 2; // whenever moves is even, index will be 0 and whenever moves is odd, index will be 1
@@ -63,11 +82,8 @@ const takeTurn = function() {
 }
 
 const checkForWin = function() {
-  for (let i = 0; i < 3; i++) {
-    // if (checkRow(i * 3) || checkColumn(i) || checkDiagonal(i)) {
-    //   return true;
-    // }
-    if (checkGrid(i)) {
+  for (let i = 0; i < winningCombos.length; i++) {
+    if (matchingSquares(winningCombos[i][0], winningCombos[i][1], winningCombos[i][2])) {
       return true;
     }
   }
@@ -89,48 +105,7 @@ const updateWins = function(index) {
   $(`#player${player.playerNum} span`).text(player.wins); // updates the players wins text on the screen
 }
 
-// checks the grid for three consecutive squares with the same token
-const checkGrid = function(index) {
-  const rowIndex = index * 3; // the starting indexes for the rows are 0, 3 and 6 so index must be multiplied by 3 to get the starting index for each row
-
-  const rowIncrement = 1;
-  const colIncrement = 3;
-  const diagIncrement = index === 0 ? 4 : 2; // the indexes for the diagonals are 0, 4, 8 and 2, 4, 6, so we have to change the increment according to the first index of the diagonal we are checking
-  // run compareSquares to see if we find three matching squares in a line using an starting index and increment
-  const rowWin = compareSquares(rowIndex, rowIncrement);
-  const colWin = compareSquares(index, colIncrement);
-  let diagWin = false;
-  if (index !== 1) { // there are only two diagonals to check and the square at index 1 is not in one of those diagonals, so skip this check when index === 1
-    diagWin = compareSquares(index, diagIncrement);
-  }
-  return rowWin || colWin || diagWin;
+// returns true if the three squares have the same token and false otherwise. has a check to avoid returning true if all three squares are blank
+const matchingSquares = function(i, j, k) {
+  return $($squares[i]).text() !== '' && $($squares[i]).text() === $($squares[j]).text() && $($squares[i]).text() === $($squares[k]).text();
 }
-
-// returns true if it finds three squares in a line with the same token and false otherwise
-const compareSquares = function(i, increment) {
-  // if ($($squares[i]).text() !== '') { // only compare the squares if we dont immediately find a blank square to begin with
-    return $($squares[i]).text() !== '' && $($squares[i]).text() === $($squares[i + increment]).text() && $($squares[i]).text() === $($squares[i + 2 * increment]).text();
-  // }
-  // return false;
-}
-
-// const checkDiagonal = function(i) {
-//   // the indexes for the diagonals are 0, 4, 8 and 2, 4, 6, so we have to change the increment according to the first index of the diagonal we are checking
-//   const increment = i === 0 ? 4 : 2;
-//   // this function only needs to get ran twice as there are only two diagonals, unlike checkRow and checkColumn, so we will skip this function when i is equal to 1.
-//   if (i !== 1) {
-//     return $($squares[i]).text() !== '' ? compareSquares(i, increment) : false;
-//   }
-// }
-//
-// const checkRow = function(i) {
-//   // the increment is 1 because the indexes for the rows are 0, 1, 2 and 3, 4, 5 and 6, 7, 8.
-//   const increment = 1;
-//   return $($squares[i]).text() !== '' ? compareSquares(i, increment) : false;
-// }
-//
-// const checkColumn = function(i) {
-//   // the increment is 3 because the indexes for the columns are 0, 3, 6 and 1, 4, 7, and 2, 5, 8.
-//   const increment = 3;
-//   return $($squares[i]).text() !== '' ? compareSquares(i, increment) : false;
-// }
