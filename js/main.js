@@ -1,7 +1,16 @@
 let $squares;
 let moves = 0;
-const symbols = ['X', 'O'];
-let currentPlayer;
+const players = [
+  {
+    token: 'X',
+    wins: 0,
+    playerNum: 1
+  }, {
+    token: 'O',
+    wins: 0,
+    playerNum: 2
+  }
+];
 let gameOver = false;
 
 $(document).ready(function() {
@@ -11,7 +20,7 @@ $(document).ready(function() {
 
   $('#new-game').on('click', newGame);
 
-  $('select').change(updateSelect);
+  $('select').change(updateSelectMenu);
 });
 
 // resets the game board and variables
@@ -22,7 +31,7 @@ const newGame = function() {
   $('#result').addClass('opacity');
 }
 
-const updateSelect = function() {
+const updateSelectMenu = function() {
   const value = $(this).val();
   const id = parseInt($(this).attr('id'));
   const nextId = (id + 1) % 2;
@@ -30,31 +39,39 @@ const updateSelect = function() {
   $(`#${nextId} option`).show();
   $(optionToHide[nextId]).hide();
   $squares.each(function() {
-    if ($(this).html() === symbols[id]) {
+    if ($(this).html() === players[id].token) {
         $(this).html(value);
     }
   })
-  symbols[id] = value;
+  players[id].token = value;
 }
 
 const takeTurn = function() {
   if ($(this).text() === '' && !gameOver) {
     // whenever moves is even, currentPlayer will be X and whenever moves is odd currentPlayer will be O
-    currentPlayer = symbols[moves % 2]
-    $(this).text(currentPlayer);
+    const index = moves % 2;
+    const token = players[index].token;
+    $(this).text(token);
     // check if someone has won, otherwise check if all the squares have been filled then end the game if either condition is met
     if (checkResult()) {
-      endGame(true);
+      displayResult(token, true);
+      updateWin(index);
     } else if (moves === 8) {
-      endGame(false);
+      displayResult(false);
     }
     moves++;
   }
 }
 
+const updateWin = function(index) {
+  players[index].wins++;
+  const player = players[index];
+  $(`#player${player.playerNum} span`).text(player.wins);
+}
+
 // ends the game, setting the result text accordingly
-const endGame = function(gameWon) {
-  const result = gameWon ? currentPlayer + ' wins!' : 'It\'s a draw!';
+const displayResult = function(player, hasWon) {
+  const result = hasWon ? player + ' wins!' : 'It\'s a draw!';
   $('#result').text(result)
               .removeClass('opacity');
   gameOver = true;
@@ -90,7 +107,7 @@ const checkDiagonal = function(i) {
   }
 }
 
-// returns true if it finds three squares in a line with the same symbol and false otherwise
+// returns true if it finds three squares in a line with the same token and false otherwise
 const compareSquares = function(i, increment) {
   return $($squares[i]).text() === $($squares[i + increment]).text() && $($squares[i]).text() === $($squares[i + 2 * increment]).text();
 }
