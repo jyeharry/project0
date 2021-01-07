@@ -11,24 +11,24 @@ h1 {
   font-size: 40px;
 }
 
-#players > div {
-  display: inline-block;
-  margin: 20px 60px;
+h2 {
+  margin: 40px 0;
+  font-size: 35px;
+  transition: 0.2s;
 }
 
 h3 {
   font-size: 25px;
 }
 
+#players > div {
+  display: inline-block;
+  margin: 20px 60px;
+}
+
 select {
   width: 50px;
   font-size: 20px;
-}
-
-#result {
-  margin: 40px 0;
-  font-size: 35px;
-  transition: 0.2s;
 }
 
 button {
