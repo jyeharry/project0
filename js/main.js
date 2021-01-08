@@ -83,7 +83,7 @@ const takeTurn = function() {
 
 const checkForWin = function() {
   for (let i = 0; i < winningCombos.length; i++) {
-    if (matchingSquares(winningCombos[i][0], winningCombos[i][1], winningCombos[i][2])) {
+    if (matchingSquares(winningCombos[i])) {
       return true;
     }
   }
@@ -106,6 +106,6 @@ const updateWins = function(index) {
 }
 
 // returns true if the three squares have the same token and false otherwise. has a check to avoid returning true if all three squares are blank
-const matchingSquares = function(i, j, k) {
+const matchingSquares = function([i, j, k]) {
   return $($squares[i]).text() !== '' && $($squares[i]).text() === $($squares[j]).text() && $($squares[i]).text() === $($squares[k]).text();
 }
